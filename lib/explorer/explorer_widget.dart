@@ -46,7 +46,10 @@ class _ExplorerWidgetState extends State<ExplorerWidget> {
       );
     }
     return StreamBuilder<List<MarkerRecord>>(
-      stream: queryMarkerRecord(),
+      stream: queryMarkerRecord(
+        queryBuilder: (markerRecord) =>
+            markerRecord.where('user', isEqualTo: currentUserUid),
+      ),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
