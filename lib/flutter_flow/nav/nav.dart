@@ -82,14 +82,29 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => ExplorerWidget(),
             ),
             FFRoute(
+              name: 'Splash',
+              path: 'splash',
+              builder: (context, params) => SplashWidget(),
+            ),
+            FFRoute(
               name: 'SignIn',
               path: 'signIn',
               builder: (context, params) => SignInWidget(),
             ),
             FFRoute(
-              name: 'Splash',
-              path: 'splash',
-              builder: (context, params) => SplashWidget(),
+              name: 'ForgotPassword',
+              path: 'forgotPassword',
+              builder: (context, params) => ForgotPasswordWidget(),
+            ),
+            FFRoute(
+              name: 'PhonePage',
+              path: 'phonePage',
+              builder: (context, params) => PhonePageWidget(),
+            ),
+            FFRoute(
+              name: 'PhoneVerify',
+              path: 'phoneVerify',
+              builder: (context, params) => PhoneVerifyWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),

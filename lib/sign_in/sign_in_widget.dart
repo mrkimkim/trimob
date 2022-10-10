@@ -356,6 +356,38 @@ class _SignInWidgetState extends State<SignInWidget> {
                                         Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
+                                                  0, 20, 0, 0),
+                                          child: FFButtonWidget(
+                                            onPressed: () async {
+                                              context
+                                                  .pushNamed('ForgotPassword');
+                                            },
+                                            text: 'Forgot Password?',
+                                            options: FFButtonOptions(
+                                              width: 170,
+                                              height: 40,
+                                              color: Color(0x0039D2C0),
+                                              textStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .subtitle1
+                                                      .override(
+                                                        fontFamily: 'Outfit',
+                                                        color: Colors.white,
+                                                        fontSize: 18,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                      ),
+                                              elevation: 0,
+                                              borderSide: BorderSide(
+                                                color: Colors.transparent,
+                                                width: 1,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   20, 0, 20, 0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -465,6 +497,36 @@ class _SignInWidgetState extends State<SignInWidget> {
                                                           0, 0),
                                                   child: FaIcon(
                                                     FontAwesomeIcons.facebookF,
+                                                    color: Colors.white,
+                                                    size: 24,
+                                                  ),
+                                                ),
+                                              ),
+                                              InkWell(
+                                                onTap: () async {
+                                                  context
+                                                      .pushNamed('PhonePage');
+                                                },
+                                                child: Container(
+                                                  width: 50,
+                                                  height: 50,
+                                                  decoration: BoxDecoration(
+                                                    color: Color(0xFF0F1113),
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                        blurRadius: 5,
+                                                        color:
+                                                            Color(0x3314181B),
+                                                        offset: Offset(0, 2),
+                                                      )
+                                                    ],
+                                                    shape: BoxShape.circle,
+                                                  ),
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          0, 0),
+                                                  child: Icon(
+                                                    Icons.phone_sharp,
                                                     color: Colors.white,
                                                     size: 24,
                                                   ),
@@ -931,6 +993,36 @@ class _SignInWidgetState extends State<SignInWidget> {
                                                           0, 0),
                                                   child: FaIcon(
                                                     FontAwesomeIcons.facebookF,
+                                                    color: Colors.white,
+                                                    size: 24,
+                                                  ),
+                                                ),
+                                              ),
+                                              InkWell(
+                                                onTap: () async {
+                                                  context
+                                                      .pushNamed('PhonePage');
+                                                },
+                                                child: Container(
+                                                  width: 50,
+                                                  height: 50,
+                                                  decoration: BoxDecoration(
+                                                    color: Color(0xFF0F1113),
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                        blurRadius: 5,
+                                                        color:
+                                                            Color(0x3314181B),
+                                                        offset: Offset(0, 2),
+                                                      )
+                                                    ],
+                                                    shape: BoxShape.circle,
+                                                  ),
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          0, 0),
+                                                  child: Icon(
+                                                    Icons.phone_sharp,
                                                     color: Colors.white,
                                                     size: 24,
                                                   ),
