@@ -897,6 +897,45 @@ class _SignInWidgetState extends State<SignInWidget> {
                                                   ),
                                                 ),
                                               ),
+                                              InkWell(
+                                                onTap: () async {
+                                                  GoRouter.of(context)
+                                                      .prepareAuthEvent();
+                                                  final user =
+                                                      await signInWithFacebook(
+                                                          context);
+                                                  if (user == null) {
+                                                    return;
+                                                  }
+
+                                                  context.goNamedAuth(
+                                                      'Explorer', mounted);
+                                                },
+                                                child: Container(
+                                                  width: 50,
+                                                  height: 50,
+                                                  decoration: BoxDecoration(
+                                                    color: Color(0xFF0F1113),
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                        blurRadius: 5,
+                                                        color:
+                                                            Color(0x3314181B),
+                                                        offset: Offset(0, 2),
+                                                      )
+                                                    ],
+                                                    shape: BoxShape.circle,
+                                                  ),
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          0, 0),
+                                                  child: FaIcon(
+                                                    FontAwesomeIcons.facebookF,
+                                                    color: Colors.white,
+                                                    size: 24,
+                                                  ),
+                                                ),
+                                              ),
                                             ],
                                           ),
                                         ),
