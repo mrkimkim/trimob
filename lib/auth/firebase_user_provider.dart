@@ -3,22 +3,22 @@ import 'package:rxdart/rxdart.dart';
 
 import 'auth_util.dart';
 
-class IonicsFirebaseUser {
-  IonicsFirebaseUser(this.user);
+class TrimobFirebaseUser {
+  TrimobFirebaseUser(this.user);
   User? user;
   bool get loggedIn => user != null;
 }
 
-IonicsFirebaseUser? currentUser;
+TrimobFirebaseUser? currentUser;
 bool get loggedIn => currentUser?.loggedIn ?? false;
-Stream<IonicsFirebaseUser> ionicsFirebaseUserStream() => FirebaseAuth.instance
+Stream<TrimobFirebaseUser> trimobFirebaseUserStream() => FirebaseAuth.instance
         .authStateChanges()
         .debounce((user) => user == null && !loggedIn
             ? TimerStream(true, const Duration(seconds: 1))
             : Stream.value(user))
-        .map<IonicsFirebaseUser>(
+        .map<TrimobFirebaseUser>(
       (user) {
-        currentUser = IonicsFirebaseUser(user);
+        currentUser = TrimobFirebaseUser(user);
         updateUserJwtTimer(user);
         return currentUser!;
       },

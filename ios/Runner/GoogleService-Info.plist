@@ -3,23 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>707247294140-tkq9a7ubct1tnhmm7an6lbds103raeak.apps.googleusercontent.com</string>
+	<string>53300974579-hqgccofb6v8aabmfcodrcgid50455kjv.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.707247294140-tkq9a7ubct1tnhmm7an6lbds103raeak</string>
+	<string>com.googleusercontent.apps.53300974579-hqgccofb6v8aabmfcodrcgid50455kjv</string>
 	<key>ANDROID_CLIENT_ID</key>
-	<string>707247294140-86pc0958kimpdih03viu7qcai08k6s4s.apps.googleusercontent.com</string>
+	<string>53300974579-b5tfiulc7vm9taiccs6gsqf2duc98b1p.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAYY5BzsOUCaDRyfDcS8WF6sH8xhYuhHD8</string>
+	<string>AIzaSyBosWhNlvxzLPzwxON2--S6Y0FPik2WS6o</string>
 	<key>GCM_SENDER_ID</key>
-	<string>707247294140</string>
+	<string>53300974579</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.mycompany.ionics</string>
+	<string>com.mrkimkim.trimob</string>
 	<key>PROJECT_ID</key>
-	<string>ionics-d924b</string>
+	<string>trimob-4e4e7</string>
 	<key>STORAGE_BUCKET</key>
-	<string>ionics-d924b.appspot.com</string>
+	<string>trimob-4e4e7.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -31,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:707247294140:ios:8e2824e186a2ec156272b9</string>
+	<string>1:53300974579:ios:a5bac6b37ad57442d7b886</string>
 </dict>
 </plist>

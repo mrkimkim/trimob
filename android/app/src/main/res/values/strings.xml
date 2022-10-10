@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <resources>
-    <string name="app_name">Ionics</string>
-    <string name="facebook_app_id">b1350bd237222758d1b84baf41b47afb</string>
-               <string name="fb_login_protocol_scheme">fbb1350bd237222758d1b84baf41b47afb</string>
+    <string name="app_name">Trimob</string>
+    <string name="facebook_app_id">799254757960027</string>
+               <string name="fb_login_protocol_scheme">fb799254757960027</string>
 </resources>

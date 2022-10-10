@@ -31,7 +31,7 @@ class _MyAppState extends State<MyApp> {
   Locale? _locale;
   ThemeMode _themeMode = FlutterFlowTheme.themeMode;
 
-  late Stream<IonicsFirebaseUser> userStream;
+  late Stream<TrimobFirebaseUser> userStream;
 
   late AppStateNotifier _appStateNotifier;
   late GoRouter _router;
@@ -41,7 +41,7 @@ class _MyAppState extends State<MyApp> {
     super.initState();
     _appStateNotifier = AppStateNotifier();
     _router = createRouter(_appStateNotifier);
-    userStream = ionicsFirebaseUserStream()
+    userStream = trimobFirebaseUserStream()
       ..listen((user) => _appStateNotifier.update(user));
     Future.delayed(
       Duration(seconds: 1),
@@ -59,7 +59,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'Ionics',
+      title: 'Trimob',
       localizationsDelegates: [
         FFLocalizationsDelegate(),
         GlobalMaterialLocalizations.delegate,

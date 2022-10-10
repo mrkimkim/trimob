@@ -1,56 +1,56 @@
 {
   "project_info": {
-    "project_number": "707247294140",
-    "project_id": "ionics-d924b",
-    "storage_bucket": "ionics-d924b.appspot.com"
+    "project_number": "53300974579",
+    "project_id": "trimob-4e4e7",
+    "storage_bucket": "trimob-4e4e7.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:707247294140:android:087d72df1105b5316272b9",
+        "mobilesdk_app_id": "1:53300974579:android:dfc04c88d6bc24a5d7b886",
         "android_client_info": {
-          "package_name": "com.mycompany.ionics"
+          "package_name": "com.mrkimkim.trimob"
         }
       },
       "oauth_client": [
         {
-          "client_id": "707247294140-86pc0958kimpdih03viu7qcai08k6s4s.apps.googleusercontent.com",
+          "client_id": "53300974579-b5tfiulc7vm9taiccs6gsqf2duc98b1p.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.mycompany.ionics",
-            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
-          }
-        },
-        {
-          "client_id": "707247294140-cpg6pqpssespo59nsbf8ojs7pda61n9f.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.mycompany.ionics",
+            "package_name": "com.mrkimkim.trimob",
             "certificate_hash": "6365938680f1f47f410786c58c3be52834db5272"
           }
         },
         {
-          "client_id": "707247294140-4om774dmsknghbunjpt51rrkp4vd4vnv.apps.googleusercontent.com",
+          "client_id": "53300974579-e1ssqpp51jmus552a7hksbuh7gf6iif1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mrkimkim.trimob",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "53300974579-vg6opb0t2bhtrokvdp16a250oi9mj489.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBfjVnR3bH-qCaFFg-cbEZo2sFLmeXfhZw"
+          "current_key": "AIzaSyDIrhAihWU6wmYUsuivQS-lnntTv-3oAoA"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "707247294140-4om774dmsknghbunjpt51rrkp4vd4vnv.apps.googleusercontent.com",
+              "client_id": "53300974579-vg6opb0t2bhtrokvdp16a250oi9mj489.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "707247294140-tkq9a7ubct1tnhmm7an6lbds103raeak.apps.googleusercontent.com",
+              "client_id": "53300974579-hqgccofb6v8aabmfcodrcgid50455kjv.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.mycompany.ionics"
+                "bundle_id": "com.mrkimkim.trimob"
               }
             }
           ]

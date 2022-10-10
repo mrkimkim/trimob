@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Ionics</string>
+	<string>Trimob</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -13,7 +13,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>Ionics</string>
+	<string>Trimob</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 
@@ -28,8 +28,8 @@
             <string>Editor</string>
             <key>CFBundleURLSchemes</key>
             <array>
-                <string>com.googleusercontent.apps.707247294140-tkq9a7ubct1tnhmm7an6lbds103raeak</string>
-                <string>fbb1350bd237222758d1b84baf41b47afb</string>
+                <string>com.googleusercontent.apps.53300974579-hqgccofb6v8aabmfcodrcgid50455kjv</string>
+                <string>fb799254757960027</string>
             </array>
         </dict>
 
@@ -37,10 +37,10 @@
         <key>CFBundleTypeRole</key>
         <string>Editor</string>
         <key>CFBundleURLName</key>
-        <string>ionics.com</string>
+        <string>trimob.com</string>
         <key>CFBundleURLSchemes</key>
         <array>
-        <string>ionics</string>
+        <string>trimob</string>
         </array>
         </dict>
     </array>
@@ -48,9 +48,9 @@
     <true/>
 
     <key>FacebookAppID</key>
-    <string>b1350bd237222758d1b84baf41b47afb</string>
-    <key>FacebookDisplayName</key>
     <string>799254757960027</string>
+    <key>FacebookDisplayName</key>
+    <string>trimob</string>
 
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>

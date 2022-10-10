@@ -1,11 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.mycompany.ionics"
+    package="com.mrkimkim.trimob"
     xmlns:tools="http://schemas.android.com/tools">
    <uses-permission android:name="android.permission.INTERNET"/>
 
 
    <application
-        android:label="Ionics"
+        android:label="Trimob"
         tools:replace="android:label"
         android:icon="@mipmap/ic_launcher"
         android:requestLegacyExternalStorage="true">
@@ -61,7 +61,7 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="ionics" android:host="ionics.com" />
+                <data android:scheme="trimob" android:host="trimob.com" />
             </intent-filter>
 
         </activity>
