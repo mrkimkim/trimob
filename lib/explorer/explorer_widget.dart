@@ -49,6 +49,7 @@ class _ExplorerWidgetState extends State<ExplorerWidget> {
       stream: queryMarkerRecord(
         queryBuilder: (markerRecord) =>
             markerRecord.where('user', isEqualTo: currentUserUid),
+        limit: 50,
       ),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
