@@ -82,11 +82,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => ExplorerWidget(),
             ),
             FFRoute(
-              name: 'Splash',
-              path: 'splash',
-              builder: (context, params) => SplashWidget(),
-            ),
-            FFRoute(
               name: 'SignIn',
               path: 'signIn',
               builder: (context, params) => SignInWidget(),
