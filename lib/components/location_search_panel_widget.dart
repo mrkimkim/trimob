@@ -8,7 +8,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LocationSearchPanelWidget extends StatefulWidget {
-  const LocationSearchPanelWidget({Key? key}) : super(key: key);
+  const LocationSearchPanelWidget({
+    Key? key,
+    this.onLocationPicked,
+  }) : super(key: key);
+
+  final Future<dynamic> Function()? onLocationPicked;
 
   @override
   _LocationSearchPanelWidgetState createState() =>
@@ -163,6 +168,7 @@ class _LocationSearchPanelWidgetState extends State<LocationSearchPanelWidget> {
                     onPressed: () async {
                       setState(() => FFAppState().recentlySearchedLocation =
                           placePickerValue.latLng);
+                      await widget.onLocationPicked?.call();
                     },
                     text: 'Choose date',
                     options: FFButtonOptions(
