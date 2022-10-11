@@ -15,7 +15,7 @@ class ExplorerWidget extends StatefulWidget {
     this.selectedPlace,
   }) : super(key: key);
 
-  final List<FFPlace>? selectedPlace;
+  final FFPlace? selectedPlace;
 
   @override
   _ExplorerWidgetState createState() => _ExplorerWidgetState();
@@ -34,12 +34,10 @@ class _ExplorerWidgetState extends State<ExplorerWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       currentUserLocationValue =
           await getCurrentUserLocation(defaultLocation: LatLng(0.0, 0.0));
-      if (widget.selectedPlace!.length > 0) {
+      if (functions.hasPlace(widget.selectedPlace)) {
         await googleMapsController.future.then(
           (c) => c.animateCamera(
-            CameraUpdate.newLatLng(functions
-                .getSelectedPlaceLatLng(widget.selectedPlace!.toList())
-                .toGoogleMaps()),
+            CameraUpdate.newLatLng(widget.selectedPlace!.latLng.toGoogleMaps()),
           ),
         );
       } else {

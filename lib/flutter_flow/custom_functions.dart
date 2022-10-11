@@ -31,3 +31,11 @@ List<FFPlace> createPlaceList(FFPlace place) {
   List<FFPlace> list = List.filled(1, place);
   return list;
 }
+
+bool hasPlace(FFPlace? place) {
+  // return given argument is null or not
+  if (place == null) {
+    return false;
+  }
+  return true;
+}
