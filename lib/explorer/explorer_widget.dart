@@ -1,9 +1,9 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
+import '../components/location_search_panel_widget.dart';
 import '../flutter_flow/flutter_flow_google_map.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/flutter_flow_widgets.dart';
 import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -115,121 +115,106 @@ class _ExplorerWidgetState extends State<ExplorerWidget> {
                       alignment: AlignmentDirectional(0, -1),
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
-                        child: Material(
-                          color: Colors.transparent,
-                          elevation: 10,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Container(
-                            width: double.infinity,
-                            height: 64,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
+                        child: InkWell(
+                          onTap: () async {
+                            await showModalBottomSheet(
+                              isScrollControlled: true,
+                              backgroundColor: Colors.transparent,
+                              context: context,
+                              builder: (context) {
+                                return Padding(
+                                  padding: MediaQuery.of(context).viewInsets,
+                                  child: Container(
+                                    height: double.infinity,
+                                    child: LocationSearchPanelWidget(),
+                                  ),
+                                );
+                              },
+                            ).then((value) => setState(() {}));
+                          },
+                          child: Material(
+                            color: Colors.transparent,
+                            elevation: 10,
+                            shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20),
-                              border: Border.all(
-                                color:
-                                    FlutterFlowTheme.of(context).secondaryText,
-                              ),
                             ),
-                            alignment: AlignmentDirectional(0, 0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Expanded(
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        4, 0, 4, 0),
-                                    child: TextFormField(
-                                      controller: textController,
-                                      obscureText: false,
-                                      decoration: InputDecoration(
-                                        labelText: 'Find travel spots',
-                                        enabledBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: Colors.white,
-                                            width: 2,
+                            child: Container(
+                              width: double.infinity,
+                              height: 64,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(20),
+                                border: Border.all(
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                ),
+                              ),
+                              alignment: AlignmentDirectional(0, 0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          4, 0, 4, 0),
+                                      child: TextFormField(
+                                        controller: textController,
+                                        obscureText: false,
+                                        decoration: InputDecoration(
+                                          labelText: 'Find travel spots',
+                                          enabledBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Colors.white,
+                                              width: 2,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(8),
                                           ),
-                                          borderRadius:
-                                              BorderRadius.circular(8),
-                                        ),
-                                        focusedBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: Colors.white,
-                                            width: 2,
+                                          focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Colors.white,
+                                              width: 2,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(8),
                                           ),
-                                          borderRadius:
-                                              BorderRadius.circular(8),
-                                        ),
-                                        errorBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: Color(0x00000000),
-                                            width: 2,
+                                          errorBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Color(0x00000000),
+                                              width: 2,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(8),
                                           ),
-                                          borderRadius:
-                                              BorderRadius.circular(8),
-                                        ),
-                                        focusedErrorBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: Color(0x00000000),
-                                            width: 2,
+                                          focusedErrorBorder:
+                                              OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Color(0x00000000),
+                                              width: 2,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(8),
                                           ),
-                                          borderRadius:
-                                              BorderRadius.circular(8),
-                                        ),
-                                        filled: true,
-                                        fillColor: Colors.white,
-                                        prefixIcon: Icon(
-                                          Icons.search_sharp,
-                                          color: Color(0xFF57636C),
-                                        ),
-                                      ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyText1
-                                          .override(
-                                            fontFamily: 'Lexend Deca',
+                                          filled: true,
+                                          fillColor: Colors.white,
+                                          prefixIcon: Icon(
+                                            Icons.search_sharp,
                                             color: Color(0xFF57636C),
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.normal,
                                           ),
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 15, 0),
-                                  child: FFButtonWidget(
-                                    onPressed: () {
-                                      print('Button pressed ...');
-                                    },
-                                    text: '',
-                                    icon: Icon(
-                                      Icons.cake,
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                      size: 15,
-                                    ),
-                                    options: FFButtonOptions(
-                                      width: 40,
-                                      height: 40,
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryBtnText,
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .subtitle2
-                                          .override(
-                                            fontFamily: 'Poppins',
-                                            color: Colors.white,
-                                          ),
-                                      elevation: 10,
-                                      borderSide: BorderSide(
-                                        color: Color(0xFFCECECE),
-                                        width: 2,
+                                        ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyText1
+                                            .override(
+                                              fontFamily: 'Lexend Deca',
+                                              color: Color(0xFF57636C),
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.normal,
+                                            ),
                                       ),
-                                      borderRadius: BorderRadius.circular(20),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ),
