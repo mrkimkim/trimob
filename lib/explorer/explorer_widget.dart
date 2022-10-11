@@ -82,7 +82,6 @@ class _ExplorerWidgetState extends State<ExplorerWidget> {
                     width: double.infinity,
                     height: double.infinity,
                     decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
                       borderRadius: BorderRadius.circular(0),
                     ),
                     child: Align(
