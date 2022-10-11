@@ -121,7 +121,10 @@ class _ExplorerWidgetState extends State<ExplorerWidget> {
                               builder: (context) {
                                 return Padding(
                                   padding: MediaQuery.of(context).viewInsets,
-                                  child: LocationSearchPanelWidget(),
+                                  child: Container(
+                                    height: double.infinity,
+                                    child: LocationSearchPanelWidget(),
+                                  ),
                                 );
                               },
                             ).then((value) => setState(() {}));
