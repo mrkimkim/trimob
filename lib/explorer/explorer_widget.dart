@@ -113,10 +113,6 @@ class _ExplorerWidgetState extends State<ExplorerWidget> {
                           onTap: () async {
                             await showModalBottomSheet(
                               isScrollControlled: true,
-                              backgroundColor:
-                                  FlutterFlowTheme.of(context).primaryColor,
-                              barrierColor:
-                                  FlutterFlowTheme.of(context).tertiaryColor,
                               context: context,
                               builder: (context) {
                                 return Padding(
