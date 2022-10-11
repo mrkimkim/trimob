@@ -22,7 +22,7 @@ class _LocationSearchPanelWidgetState extends State<LocationSearchPanelWidget> {
   Widget build(BuildContext context) {
     return Material(
       color: Colors.transparent,
-      elevation: 5,
+      elevation: 10,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(0),
@@ -110,19 +110,20 @@ class _LocationSearchPanelWidgetState extends State<LocationSearchPanelWidget> {
                 ),
               ),
             ),
-            Align(
-              alignment: AlignmentDirectional(-1, 0),
-              child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 16, 0, 0),
-                child: Text(
-                  valueOrDefault<String>(
-                    placePickerValue.name,
-                    'Location',
+            if (placePickerValue.name == '')
+              Align(
+                alignment: AlignmentDirectional(-1, 0),
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(16, 16, 0, 0),
+                  child: Text(
+                    valueOrDefault<String>(
+                      placePickerValue.name,
+                      'Location',
+                    ),
+                    style: FlutterFlowTheme.of(context).bodyText1,
                   ),
-                  style: FlutterFlowTheme.of(context).bodyText1,
                 ),
               ),
-            ),
             Align(
               alignment: AlignmentDirectional(1, 0),
               child: Padding(
