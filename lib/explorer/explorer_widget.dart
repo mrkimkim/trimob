@@ -2,6 +2,7 @@ import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../components/location_search_panel_widget.dart';
 import '../flutter_flow/flutter_flow_google_map.dart';
+import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/custom_functions.dart' as functions;
@@ -20,20 +21,12 @@ class _ExplorerWidgetState extends State<ExplorerWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   LatLng? googleMapsCenter;
   final googleMapsController = Completer<GoogleMapController>();
-  TextEditingController? textController;
 
   @override
   void initState() {
     super.initState();
     getCurrentUserLocation(defaultLocation: LatLng(0.0, 0.0), cached: true)
         .then((loc) => setState(() => currentUserLocationValue = loc));
-    textController = TextEditingController();
-  }
-
-  @override
-  void dispose() {
-    textController?.dispose();
-    super.dispose();
   }
 
   @override
@@ -110,24 +103,25 @@ class _ExplorerWidgetState extends State<ExplorerWidget> {
                     height: double.infinity,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
+                      borderRadius: BorderRadius.circular(0),
                     ),
                     child: Align(
-                      alignment: AlignmentDirectional(0, -1),
+                      alignment: AlignmentDirectional(-1, -1),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
+                        padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
                         child: InkWell(
                           onTap: () async {
                             await showModalBottomSheet(
                               isScrollControlled: true,
-                              backgroundColor: Colors.transparent,
+                              backgroundColor:
+                                  FlutterFlowTheme.of(context).primaryColor,
+                              barrierColor:
+                                  FlutterFlowTheme.of(context).tertiaryColor,
                               context: context,
                               builder: (context) {
                                 return Padding(
                                   padding: MediaQuery.of(context).viewInsets,
-                                  child: Container(
-                                    height: double.infinity,
-                                    child: LocationSearchPanelWidget(),
-                                  ),
+                                  child: LocationSearchPanelWidget(),
                                 );
                               },
                             ).then((value) => setState(() {}));
@@ -140,75 +134,52 @@ class _ExplorerWidgetState extends State<ExplorerWidget> {
                             ),
                             child: Container(
                               width: double.infinity,
-                              height: 64,
+                              height: 60,
                               decoration: BoxDecoration(
-                                color: Colors.white,
+                                color: Color(0xFFB3EE60),
                                 borderRadius: BorderRadius.circular(20),
                                 border: Border.all(
                                   color: FlutterFlowTheme.of(context)
-                                      .secondaryText,
+                                      .primaryBtnText,
+                                  width: 2,
                                 ),
                               ),
-                              alignment: AlignmentDirectional(0, 0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
-                                  Expanded(
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        8, 0, 0, 0),
+                                    child: FlutterFlowIconButton(
+                                      borderColor: Colors.transparent,
+                                      borderRadius: 0,
+                                      borderWidth: 1,
+                                      buttonSize: 40,
+                                      icon: Icon(
+                                        Icons.search,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        size: 18,
+                                      ),
+                                      onPressed: () {
+                                        print('IconButton pressed ...');
+                                      },
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: AlignmentDirectional(-1, 0),
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          4, 0, 4, 0),
-                                      child: TextFormField(
-                                        controller: textController,
-                                        obscureText: false,
-                                        decoration: InputDecoration(
-                                          labelText: 'Find travel spots',
-                                          enabledBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: Colors.white,
-                                              width: 2,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(8),
-                                          ),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: Colors.white,
-                                              width: 2,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(8),
-                                          ),
-                                          errorBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: Color(0x00000000),
-                                              width: 2,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(8),
-                                          ),
-                                          focusedErrorBorder:
-                                              OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: Color(0x00000000),
-                                              width: 2,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(8),
-                                          ),
-                                          filled: true,
-                                          fillColor: Colors.white,
-                                          prefixIcon: Icon(
-                                            Icons.search_sharp,
-                                            color: Color(0xFF57636C),
-                                          ),
-                                        ),
+                                          8, 0, 16, 0),
+                                      child: Text(
+                                        'Search Place  you want',
                                         style: FlutterFlowTheme.of(context)
                                             .bodyText1
                                             .override(
-                                              fontFamily: 'Lexend Deca',
-                                              color: Color(0xFF57636C),
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.normal,
+                                              fontFamily: 'Poppins',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
                                             ),
                                       ),
                                     ),
