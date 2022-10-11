@@ -77,16 +77,19 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               appStateNotifier.loggedIn ? NavBarPage() : SignInWidget(),
           routes: [
             FFRoute(
+              name: 'SignIn',
+              path: 'signIn',
+              builder: (context, params) => SignInWidget(),
+            ),
+            FFRoute(
               name: 'Explorer',
               path: 'explorer',
               builder: (context, params) => params.isEmpty
                   ? NavBarPage(initialPage: 'Explorer')
-                  : ExplorerWidget(),
-            ),
-            FFRoute(
-              name: 'SignIn',
-              path: 'signIn',
-              builder: (context, params) => SignInWidget(),
+                  : ExplorerWidget(
+                      selectedPlace:
+                          params.getParam('selectedPlace', ParamType.FFPlace),
+                    ),
             ),
             FFRoute(
               name: 'ForgotPassword',
@@ -114,6 +117,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'temp',
               path: 'temp',
               builder: (context, params) => TempWidget(),
+            ),
+            FFRoute(
+              name: 'SearchPlace',
+              path: 'searchPlace',
+              builder: (context, params) => SearchPlaceWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),

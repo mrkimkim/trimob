@@ -1,54 +1,52 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
-import '../components/location_search_panel_widget.dart';
-import '../flutter_flow/flutter_flow_animations.dart';
 import '../flutter_flow/flutter_flow_google_map.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ExplorerWidget extends StatefulWidget {
-  const ExplorerWidget({Key? key}) : super(key: key);
+  const ExplorerWidget({
+    Key? key,
+    this.selectedPlace,
+  }) : super(key: key);
+
+  final FFPlace? selectedPlace;
 
   @override
   _ExplorerWidgetState createState() => _ExplorerWidgetState();
 }
 
-class _ExplorerWidgetState extends State<ExplorerWidget>
-    with TickerProviderStateMixin {
-  final animationsMap = {
-    'locationSearchPanelOnActionTriggerAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onActionTrigger,
-      applyInitialState: true,
-      effects: [
-        VisibilityEffect(duration: 1.ms),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 300.ms,
-          begin: Offset(0, 1000),
-          end: Offset(0, 0),
-        ),
-      ],
-    ),
-  };
+class _ExplorerWidgetState extends State<ExplorerWidget> {
+  LatLng? currentUserLocationValue;
+  final scaffoldKey = GlobalKey<ScaffoldState>();
   LatLng? googleMapsCenter;
   final googleMapsController = Completer<GoogleMapController>();
-  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    setupAnimations(
-      animationsMap.values.where((anim) =>
-          anim.trigger == AnimationTrigger.onActionTrigger ||
-          !anim.applyInitialState),
-      this,
-    );
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      currentUserLocationValue =
+          await getCurrentUserLocation(defaultLocation: LatLng(0.0, 0.0));
+      if (widget.selectedPlace != null) {
+        await googleMapsController.future.then(
+          (c) => c.animateCamera(
+            CameraUpdate.newLatLng(widget.selectedPlace!.latLng.toGoogleMaps()),
+          ),
+        );
+      } else {
+        await googleMapsController.future.then(
+          (c) => c.animateCamera(
+            CameraUpdate.newLatLng(currentUserLocationValue!.toGoogleMaps()),
+          ),
+        );
+      }
+    });
   }
 
   @override
@@ -87,7 +85,7 @@ class _ExplorerWidgetState extends State<ExplorerWidget>
                     onCameraIdle: (latLng) =>
                         setState(() => googleMapsCenter = latLng),
                     initialLocation: googleMapsCenter ??=
-                        FFAppState().recentlySearchedLocation!,
+                        widget.selectedPlace!.latLng,
                     markerColor: GoogleMarkerColor.violet,
                     mapType: MapType.normal,
                     style: GoogleMapStyle.standard,
@@ -113,14 +111,7 @@ class _ExplorerWidgetState extends State<ExplorerWidget>
                         padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
                         child: InkWell(
                           onTap: () async {
-                            if (animationsMap[
-                                    'locationSearchPanelOnActionTriggerAnimation'] !=
-                                null) {
-                              await animationsMap[
-                                      'locationSearchPanelOnActionTriggerAnimation']!
-                                  .controller
-                                  .forward(from: 0.0);
-                            }
+                            context.pushNamed('SearchPlace');
                           },
                           child: Material(
                             color: Colors.transparent,
@@ -169,14 +160,19 @@ class _ExplorerWidgetState extends State<ExplorerWidget>
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           8, 0, 16, 0),
                                       child: Text(
-                                        'Search Place  you want',
+                                        valueOrDefault<String>(
+                                          '${widget.selectedPlace!.name}${widget.selectedPlace!.address}',
+                                          'Search places',
+                                        ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyText1
                                             .override(
                                               fontFamily: 'Poppins',
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .primaryText,
+                                                      .secondaryText,
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.normal,
                                             ),
                                       ),
                                     ),
@@ -188,20 +184,6 @@ class _ExplorerWidgetState extends State<ExplorerWidget>
                         ),
                       ),
                     ),
-                  ),
-                  LocationSearchPanelWidget(
-                    onLocationPicked: () async {
-                      await googleMapsController.future.then(
-                        (c) => c.animateCamera(
-                          CameraUpdate.newLatLng(FFAppState()
-                              .recentlySearchedLocation!
-                              .toGoogleMaps()),
-                        ),
-                      );
-                    },
-                  ).animateOnActionTrigger(
-                    animationsMap[
-                        'locationSearchPanelOnActionTriggerAnimation']!,
                   ),
                 ],
               ),

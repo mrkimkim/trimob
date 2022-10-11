@@ -19,6 +19,8 @@ class FFAppState {
   late SharedPreferences prefs;
 
   LatLng? recentlySearchedLocation = LatLng(37.7749295, -122.4194155);
+
+  List<String> recentPlaceInfo = [];
 }
 
 LatLng? _latLngFromString(String? val) {
