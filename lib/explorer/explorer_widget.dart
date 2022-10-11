@@ -65,7 +65,7 @@ class _ExplorerWidgetState extends State<ExplorerWidget> {
         return Scaffold(
           key: scaffoldKey,
           resizeToAvoidBottomInset: false,
-          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+          backgroundColor: Colors.white,
           body: SafeArea(
             child: GestureDetector(
               onTap: () => FocusScope.of(context).unfocus(),
@@ -122,7 +122,8 @@ class _ExplorerWidgetState extends State<ExplorerWidget> {
                                 return Padding(
                                   padding: MediaQuery.of(context).viewInsets,
                                   child: Container(
-                                    height: double.infinity,
+                                    height: MediaQuery.of(context).size.height *
+                                        0.9,
                                     child: LocationSearchPanelWidget(),
                                   ),
                                 );
