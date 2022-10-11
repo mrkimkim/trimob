@@ -110,7 +110,7 @@ class _LocationSearchPanelWidgetState extends State<LocationSearchPanelWidget> {
                 ),
               ),
             ),
-            if (placePickerValue.name == '')
+            if (placePickerValue.name != '')
               Align(
                 alignment: AlignmentDirectional(-1, 0),
                 child: Padding(
@@ -124,7 +124,7 @@ class _LocationSearchPanelWidgetState extends State<LocationSearchPanelWidget> {
                   ),
                 ),
               ),
-            if (placePickerValue.name == '')
+            if (placePickerValue.name != '')
               Align(
                 alignment: AlignmentDirectional(1, 0),
                 child: Padding(
