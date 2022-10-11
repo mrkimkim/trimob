@@ -124,6 +124,36 @@ class _LocationSearchPanelWidgetState extends State<LocationSearchPanelWidget> {
                   ),
                 ),
               ),
+            Align(
+              alignment: AlignmentDirectional(-1, 0),
+              child: Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(16, 16, 0, 0),
+                child: Text(
+                  placePickerValue.address,
+                  style: FlutterFlowTheme.of(context).bodyText1,
+                ),
+              ),
+            ),
+            Align(
+              alignment: AlignmentDirectional(-1, 0),
+              child: Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(16, 16, 0, 0),
+                child: Text(
+                  placePickerValue.city,
+                  style: FlutterFlowTheme.of(context).bodyText1,
+                ),
+              ),
+            ),
+            Align(
+              alignment: AlignmentDirectional(-1, 0),
+              child: Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(16, 16, 0, 0),
+                child: Text(
+                  placePickerValue.country,
+                  style: FlutterFlowTheme.of(context).bodyText1,
+                ),
+              ),
+            ),
             if (placePickerValue.name != '')
               Align(
                 alignment: AlignmentDirectional(1, 0),
