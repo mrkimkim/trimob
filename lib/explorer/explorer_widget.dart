@@ -163,10 +163,7 @@ class _ExplorerWidgetState extends State<ExplorerWidget> {
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           8, 0, 16, 0),
                                       child: Text(
-                                        valueOrDefault<String>(
-                                          '${widget.selectedPlace!.name}${widget.selectedPlace!.address}',
-                                          'Search places',
-                                        ),
+                                        'Search Place  you want',
                                         style: FlutterFlowTheme.of(context)
                                             .bodyText1
                                             .override(
