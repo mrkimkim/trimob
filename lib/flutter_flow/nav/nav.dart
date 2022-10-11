@@ -68,18 +68,20 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, _) =>
-          appStateNotifier.loggedIn ? ExplorerWidget() : SignInWidget(),
+          appStateNotifier.loggedIn ? NavBarPage() : SignInWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? ExplorerWidget() : SignInWidget(),
+              appStateNotifier.loggedIn ? NavBarPage() : SignInWidget(),
           routes: [
             FFRoute(
               name: 'Explorer',
               path: 'explorer',
-              builder: (context, params) => ExplorerWidget(),
+              builder: (context, params) => params.isEmpty
+                  ? NavBarPage(initialPage: 'Explorer')
+                  : ExplorerWidget(),
             ),
             FFRoute(
               name: 'SignIn',
@@ -100,6 +102,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'PhoneVerify',
               path: 'phoneVerify',
               builder: (context, params) => PhoneVerifyWidget(),
+            ),
+            FFRoute(
+              name: 'Logout',
+              path: 'logout',
+              builder: (context, params) => params.isEmpty
+                  ? NavBarPage(initialPage: 'Logout')
+                  : LogoutWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),

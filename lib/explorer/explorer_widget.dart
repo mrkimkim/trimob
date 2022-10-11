@@ -1,12 +1,9 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_google_map.dart';
-import '../flutter_flow/flutter_flow_place_picker.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../flutter_flow/place.dart';
-import 'dart:io';
 import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -23,13 +20,20 @@ class _ExplorerWidgetState extends State<ExplorerWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   LatLng? googleMapsCenter;
   final googleMapsController = Completer<GoogleMapController>();
-  var placePickerValue = FFPlace();
+  TextEditingController? textController;
 
   @override
   void initState() {
     super.initState();
     getCurrentUserLocation(defaultLocation: LatLng(0.0, 0.0), cached: true)
         .then((loc) => setState(() => currentUserLocationValue = loc));
+    textController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    textController?.dispose();
+    super.dispose();
   }
 
   @override
@@ -72,102 +76,159 @@ class _ExplorerWidgetState extends State<ExplorerWidget> {
           body: SafeArea(
             child: GestureDetector(
               onTap: () => FocusScope.of(context).unfocus(),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
+              child: Stack(
                 children: [
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Stack(
-                        children: [
-                          FFButtonWidget(
-                            onPressed: () async {
-                              GoRouter.of(context).prepareAuthEvent();
-                              await signOut();
-
-                              context.goNamedAuth('SignIn', mounted);
-                            },
-                            text: 'Logout',
-                            options: FFButtonOptions(
-                              width: 130,
-                              height: 40,
-                              color: FlutterFlowTheme.of(context).primaryColor,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .subtitle2
-                                  .override(
-                                    fontFamily: 'Poppins',
-                                    color: Colors.white,
-                                  ),
-                              borderSide: BorderSide(
-                                color: Colors.transparent,
-                                width: 1,
-                              ),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
+                  FlutterFlowGoogleMap(
+                    controller: googleMapsController,
+                    onCameraIdle: (latLng) =>
+                        setState(() => googleMapsCenter = latLng),
+                    initialLocation: googleMapsCenter ??=
+                        functions.getUsersLocation(currentUserLocationValue),
+                    markers: explorerMarkerRecordList
+                        .map(
+                          (explorerMarkerRecord) => FlutterFlowMarker(
+                            explorerMarkerRecord.reference.path,
+                            explorerMarkerRecord.location!,
                           ),
-                        ],
-                      ),
-                      FlutterFlowPlacePicker(
-                        iOSGoogleMapsApiKey:
-                            'AIzaSyCrlBVhX6kcgiDDCWqCxXzYgOXZRmnBSYM',
-                        androidGoogleMapsApiKey:
-                            'AIzaSyDeZlDA_yRMtfdr9XDRPGZGuicPNF8fmog',
-                        webGoogleMapsApiKey:
-                            'AIzaSyCx6zzbkU6YjrU5hpqPY9TKXoQVRwUAAi4',
-                        onSelect: (place) async {
-                          setState(() => placePickerValue = place);
-                        },
-                        defaultText: 'Select Location',
-                        icon: Icon(
-                          Icons.place,
-                          color: Colors.white,
-                          size: 16,
-                        ),
-                        buttonOptions: FFButtonOptions(
-                          width: 200,
-                          height: 40,
-                          color: FlutterFlowTheme.of(context).primaryColor,
-                          textStyle:
-                              FlutterFlowTheme.of(context).subtitle2.override(
-                                    fontFamily: 'Poppins',
-                                    color: Colors.white,
-                                  ),
-                          borderSide: BorderSide(
-                            color: Colors.transparent,
-                            width: 1,
-                          ),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                      ),
-                    ],
+                        )
+                        .toList(),
+                    markerColor: GoogleMarkerColor.violet,
+                    mapType: MapType.normal,
+                    style: GoogleMapStyle.standard,
+                    initialZoom: 14,
+                    allowInteraction: true,
+                    allowZoom: true,
+                    showZoomControls: true,
+                    showLocation: true,
+                    showCompass: true,
+                    showMapToolbar: true,
+                    showTraffic: false,
+                    centerMapOnMarkerTap: true,
                   ),
-                  Expanded(
-                    child: FlutterFlowGoogleMap(
-                      controller: googleMapsController,
-                      onCameraIdle: (latLng) =>
-                          setState(() => googleMapsCenter = latLng),
-                      initialLocation: googleMapsCenter ??=
-                          functions.getUsersLocation(currentUserLocationValue),
-                      markers: explorerMarkerRecordList
-                          .map(
-                            (explorerMarkerRecord) => FlutterFlowMarker(
-                              explorerMarkerRecord.reference.path,
-                              explorerMarkerRecord.location!,
+                  Container(
+                    width: double.infinity,
+                    height: double.infinity,
+                    decoration: BoxDecoration(
+                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                    ),
+                    child: Align(
+                      alignment: AlignmentDirectional(0, -1),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
+                        child: Material(
+                          color: Colors.transparent,
+                          elevation: 10,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          child: Container(
+                            width: double.infinity,
+                            height: 64,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(30),
                             ),
-                          )
-                          .toList(),
-                      markerColor: GoogleMarkerColor.violet,
-                      mapType: MapType.normal,
-                      style: GoogleMapStyle.standard,
-                      initialZoom: 14,
-                      allowInteraction: true,
-                      allowZoom: true,
-                      showZoomControls: true,
-                      showLocation: true,
-                      showCompass: true,
-                      showMapToolbar: true,
-                      showTraffic: false,
-                      centerMapOnMarkerTap: true,
+                            alignment: AlignmentDirectional(0, 0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        4, 0, 4, 0),
+                                    child: TextFormField(
+                                      controller: textController,
+                                      obscureText: false,
+                                      decoration: InputDecoration(
+                                        enabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Colors.white,
+                                            width: 2,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Colors.white,
+                                            width: 2,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        ),
+                                        errorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Color(0x00000000),
+                                            width: 2,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        ),
+                                        focusedErrorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Color(0x00000000),
+                                            width: 2,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        ),
+                                        filled: true,
+                                        fillColor: Colors.white,
+                                        prefixIcon: Icon(
+                                          Icons.search_sharp,
+                                          color: Color(0xFF57636C),
+                                        ),
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1
+                                          .override(
+                                            fontFamily: 'Lexend Deca',
+                                            color: Color(0xFF57636C),
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.normal,
+                                          ),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 15, 0),
+                                  child: FFButtonWidget(
+                                    onPressed: () {
+                                      print('Button pressed ...');
+                                    },
+                                    text: '',
+                                    icon: Icon(
+                                      Icons.airplanemode_active,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      size: 15,
+                                    ),
+                                    options: FFButtonOptions(
+                                      width: 40,
+                                      height: 40,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBtnText,
+                                      textStyle: FlutterFlowTheme.of(context)
+                                          .subtitle2
+                                          .override(
+                                            fontFamily: 'Poppins',
+                                            color: Colors.white,
+                                          ),
+                                      elevation: 10,
+                                      borderSide: BorderSide(
+                                        color: Color(0xFFCECECE),
+                                        width: 2,
+                                      ),
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ],
