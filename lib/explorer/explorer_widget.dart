@@ -5,7 +5,6 @@ import '../flutter_flow/flutter_flow_google_map.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -17,31 +16,12 @@ class ExplorerWidget extends StatefulWidget {
 }
 
 class _ExplorerWidgetState extends State<ExplorerWidget> {
-  LatLng? currentUserLocationValue;
-  final scaffoldKey = GlobalKey<ScaffoldState>();
   LatLng? googleMapsCenter;
   final googleMapsController = Completer<GoogleMapController>();
-
-  @override
-  void initState() {
-    super.initState();
-    getCurrentUserLocation(defaultLocation: LatLng(0.0, 0.0), cached: true)
-        .then((loc) => setState(() => currentUserLocationValue = loc));
-  }
+  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
-    if (currentUserLocationValue == null) {
-      return Center(
-        child: SizedBox(
-          width: 50,
-          height: 50,
-          child: CircularProgressIndicator(
-            color: FlutterFlowTheme.of(context).primaryColor,
-          ),
-        ),
-      );
-    }
     return StreamBuilder<List<MarkerRecord>>(
       stream: queryMarkerRecord(
         queryBuilder: (markerRecord) =>
@@ -76,7 +56,7 @@ class _ExplorerWidgetState extends State<ExplorerWidget> {
                     onCameraIdle: (latLng) =>
                         setState(() => googleMapsCenter = latLng),
                     initialLocation: googleMapsCenter ??=
-                        functions.getUsersLocation(currentUserLocationValue),
+                        FFAppState().recentlySearchedLocation!,
                     markers: explorerMarkerRecordList
                         .map(
                           (explorerMarkerRecord) => FlutterFlowMarker(

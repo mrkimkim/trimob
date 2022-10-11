@@ -160,8 +160,9 @@ class _LocationSearchPanelWidgetState extends State<LocationSearchPanelWidget> {
                 child: Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 0, 16, 0),
                   child: FFButtonWidget(
-                    onPressed: () {
-                      print('Button pressed ...');
+                    onPressed: () async {
+                      setState(() => FFAppState().recentlySearchedLocation =
+                          placePickerValue.latLng);
                     },
                     text: 'Choose date',
                     options: FFButtonOptions(
