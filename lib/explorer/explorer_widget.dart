@@ -85,7 +85,7 @@ class _ExplorerWidgetState extends State<ExplorerWidget> {
                     onCameraIdle: (latLng) =>
                         setState(() => googleMapsCenter = latLng),
                     initialLocation: googleMapsCenter ??=
-                        widget.selectedPlace!.latLng,
+                        LatLng(13.106061, -59.613158),
                     markerColor: GoogleMarkerColor.violet,
                     mapType: MapType.normal,
                     style: GoogleMapStyle.standard,
