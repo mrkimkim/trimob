@@ -1,6 +1,5 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
-import '../components/location_search_panel_widget.dart';
 import '../flutter_flow/flutter_flow_animations.dart';
 import '../flutter_flow/flutter_flow_google_map.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
@@ -128,20 +127,13 @@ class _ExplorerWidgetState extends State<ExplorerWidget>
                       padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
                       child: InkWell(
                         onTap: () async {
-                          await showModalBottomSheet(
-                            isScrollControlled: true,
-                            context: context,
-                            builder: (context) {
-                              return Padding(
-                                padding: MediaQuery.of(context).viewInsets,
-                                child: Container(
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.9,
-                                  child: LocationSearchPanelWidget(),
-                                ),
-                              );
-                            },
-                          ).then((value) => setState(() {}));
+                          if (animationsMap[
+                                  'pageViewOnActionTriggerAnimation'] !=
+                              null) {
+                            animationsMap['pageViewOnActionTriggerAnimation']!
+                                .controller
+                                .forward(from: 0.0);
+                          }
                         },
                         child: Material(
                           color: Colors.transparent,
