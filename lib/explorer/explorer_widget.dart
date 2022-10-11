@@ -119,14 +119,18 @@ class _ExplorerWidgetState extends State<ExplorerWidget> {
                           color: Colors.transparent,
                           elevation: 10,
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
+                            borderRadius: BorderRadius.circular(20),
                           ),
                           child: Container(
                             width: double.infinity,
                             height: 64,
                             decoration: BoxDecoration(
                               color: Colors.white,
-                              borderRadius: BorderRadius.circular(30),
+                              borderRadius: BorderRadius.circular(20),
+                              border: Border.all(
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                              ),
                             ),
                             alignment: AlignmentDirectional(0, 0),
                             child: Row(
@@ -140,6 +144,7 @@ class _ExplorerWidgetState extends State<ExplorerWidget> {
                                       controller: textController,
                                       obscureText: false,
                                       decoration: InputDecoration(
+                                        labelText: 'Find travel spots',
                                         enabledBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Colors.white,
@@ -199,7 +204,7 @@ class _ExplorerWidgetState extends State<ExplorerWidget> {
                                     },
                                     text: '',
                                     icon: Icon(
-                                      Icons.airplanemode_active,
+                                      Icons.cake,
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryText,
                                       size: 15,
