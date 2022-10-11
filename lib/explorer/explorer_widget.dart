@@ -4,6 +4,7 @@ import '../flutter_flow/flutter_flow_google_map.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -14,7 +15,7 @@ class ExplorerWidget extends StatefulWidget {
     this.selectedPlace,
   }) : super(key: key);
 
-  final FFPlace? selectedPlace;
+  final List<FFPlace>? selectedPlace;
 
   @override
   _ExplorerWidgetState createState() => _ExplorerWidgetState();
@@ -33,10 +34,12 @@ class _ExplorerWidgetState extends State<ExplorerWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       currentUserLocationValue =
           await getCurrentUserLocation(defaultLocation: LatLng(0.0, 0.0));
-      if (widget.selectedPlace != null) {
+      if (widget.selectedPlace!.length > 0) {
         await googleMapsController.future.then(
           (c) => c.animateCamera(
-            CameraUpdate.newLatLng(widget.selectedPlace!.latLng.toGoogleMaps()),
+            CameraUpdate.newLatLng(functions
+                .getSelectedPlaceLatLng(widget.selectedPlace!.toList())
+                .toGoogleMaps()),
           ),
         );
       } else {

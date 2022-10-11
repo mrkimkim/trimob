@@ -4,6 +4,7 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../flutter_flow/place.dart';
 import 'dart:io';
+import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -79,8 +80,9 @@ class _SearchPlaceWidgetState extends State<SearchPlaceWidget> {
                     'Explorer',
                     queryParams: {
                       'selectedPlace': serializeParam(
-                        placePickerValue,
+                        functions.createPlaceList(placePickerValue),
                         ParamType.FFPlace,
+                        true,
                       ),
                     }.withoutNulls,
                   );

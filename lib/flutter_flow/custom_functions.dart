@@ -17,3 +17,17 @@ LatLng getUsersLocation(LatLng? userLocation) {
   }
   return userLocation;
 }
+
+LatLng getSelectedPlaceLatLng(List<FFPlace> places) {
+  // returns latlng of the first element in the given list
+  if (places.isEmpty) {
+    return LatLng(0, 0);
+  }
+  return places.first.latLng;
+}
+
+List<FFPlace> createPlaceList(FFPlace place) {
+  // returns a list which contains the first argument
+  List<FFPlace> list = List.filled(1, place);
+  return list;
+}

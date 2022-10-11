@@ -87,8 +87,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => params.isEmpty
                   ? NavBarPage(initialPage: 'Explorer')
                   : ExplorerWidget(
-                      selectedPlace:
-                          params.getParam('selectedPlace', ParamType.FFPlace),
+                      selectedPlace: params.getParam<FFPlace>(
+                          'selectedPlace', ParamType.FFPlace, true),
                     ),
             ),
             FFRoute(
