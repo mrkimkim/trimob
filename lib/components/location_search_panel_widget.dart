@@ -33,7 +33,7 @@ class _LocationSearchPanelWidgetState extends State<LocationSearchPanelWidget> {
       ),
       child: Container(
         width: double.infinity,
-        height: 400,
+        height: MediaQuery.of(context).size.height * 0.9,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(

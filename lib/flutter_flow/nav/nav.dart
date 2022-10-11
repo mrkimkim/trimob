@@ -109,6 +109,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => params.isEmpty
                   ? NavBarPage(initialPage: 'Logout')
                   : LogoutWidget(),
+            ),
+            FFRoute(
+              name: 'temp',
+              path: 'temp',
+              builder: (context, params) => TempWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),
