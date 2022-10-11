@@ -75,17 +75,6 @@ class _SearchPlaceWidgetState extends State<SearchPlaceWidget> {
               ),
               FFButtonWidget(
                 onPressed: () async {
-                  setState(() => FFAppState().recentlySearchedLocation =
-                      placePickerValue.latLng);
-                  // Clear PlaceInfo
-                  setState(() => FFAppState().recentPlaceInfo = []);
-                  // Set PlaceInfo
-                  setState(() =>
-                      FFAppState().recentPlaceInfo.add(placePickerValue.name));
-                  setState(() => FFAppState()
-                      .recentPlaceInfo
-                      .add(placePickerValue.address));
-
                   context.pushNamed(
                     'Explorer',
                     queryParams: {
