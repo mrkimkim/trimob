@@ -108,7 +108,7 @@ class _ExplorerWidgetState extends State<ExplorerWidget> {
                     child: Align(
                       alignment: AlignmentDirectional(-1, -1),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
+                        padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
                         child: InkWell(
                           onTap: () async {
                             await showModalBottomSheet(
@@ -140,11 +140,12 @@ class _ExplorerWidgetState extends State<ExplorerWidget> {
                               width: double.infinity,
                               height: 60,
                               decoration: BoxDecoration(
-                                color: Color(0xFFB3EE60),
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
                                 borderRadius: BorderRadius.circular(20),
                                 border: Border.all(
                                   color: FlutterFlowTheme.of(context)
-                                      .primaryBtnText,
+                                      .secondaryBackground,
                                   width: 2,
                                 ),
                               ),
