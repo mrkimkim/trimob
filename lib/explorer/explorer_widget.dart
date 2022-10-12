@@ -112,7 +112,17 @@ class _ExplorerWidgetState extends State<ExplorerWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
                         child: InkWell(
                           onTap: () async {
-                            context.pushNamed('SearchPlace');
+                            context.pushNamed(
+                              'SearchPlace',
+                              extra: <String, dynamic>{
+                                kTransitionInfoKey: TransitionInfo(
+                                  hasTransition: true,
+                                  transitionType:
+                                      PageTransitionType.bottomToTop,
+                                  duration: Duration(milliseconds: 300),
+                                ),
+                              },
+                            );
                           },
                           child: Material(
                             color: Colors.transparent,
