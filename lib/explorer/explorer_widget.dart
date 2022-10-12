@@ -182,7 +182,7 @@ class _ExplorerWidgetState extends State<ExplorerWidget> {
                           allowZoom: true,
                           showZoomControls: true,
                           showLocation: true,
-                          showCompass: false,
+                          showCompass: true,
                           showMapToolbar: false,
                           showTraffic: false,
                           centerMapOnMarkerTap: true,
