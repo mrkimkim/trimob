@@ -117,7 +117,7 @@ class _ExplorerWidgetState extends State<ExplorerWidget> {
                               )
                               .toList(),
                           markerColor: GoogleMarkerColor.violet,
-                          mapType: MapType.terrain,
+                          mapType: MapType.normal,
                           style: GoogleMapStyle.standard,
                           initialZoom: 14,
                           allowInteraction: true,
@@ -127,7 +127,7 @@ class _ExplorerWidgetState extends State<ExplorerWidget> {
                           showCompass: false,
                           showMapToolbar: false,
                           showTraffic: false,
-                          centerMapOnMarkerTap: false,
+                          centerMapOnMarkerTap: true,
                         ),
                       ),
                     ],
