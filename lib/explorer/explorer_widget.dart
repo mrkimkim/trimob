@@ -81,25 +81,6 @@ class _ExplorerWidgetState extends State<ExplorerWidget> {
               onTap: () => FocusScope.of(context).unfocus(),
               child: Stack(
                 children: [
-                  FlutterFlowGoogleMap(
-                    controller: googleMapsController,
-                    onCameraIdle: (latLng) =>
-                        setState(() => googleMapsCenter = latLng),
-                    initialLocation: googleMapsCenter ??=
-                        LatLng(13.106061, -59.613158),
-                    markerColor: GoogleMarkerColor.violet,
-                    mapType: MapType.normal,
-                    style: GoogleMapStyle.standard,
-                    initialZoom: 14,
-                    allowInteraction: true,
-                    allowZoom: true,
-                    showZoomControls: true,
-                    showLocation: true,
-                    showCompass: true,
-                    showMapToolbar: true,
-                    showTraffic: false,
-                    centerMapOnMarkerTap: true,
-                  ),
                   Align(
                     alignment: AlignmentDirectional(-1, -1),
                     child: Padding(
@@ -183,6 +164,25 @@ class _ExplorerWidgetState extends State<ExplorerWidget> {
                         ),
                       ),
                     ),
+                  ),
+                  FlutterFlowGoogleMap(
+                    controller: googleMapsController,
+                    onCameraIdle: (latLng) =>
+                        setState(() => googleMapsCenter = latLng),
+                    initialLocation: googleMapsCenter ??=
+                        LatLng(13.106061, -59.613158),
+                    markerColor: GoogleMarkerColor.violet,
+                    mapType: MapType.normal,
+                    style: GoogleMapStyle.standard,
+                    initialZoom: 14,
+                    allowInteraction: true,
+                    allowZoom: true,
+                    showZoomControls: true,
+                    showLocation: true,
+                    showCompass: true,
+                    showMapToolbar: true,
+                    showTraffic: false,
+                    centerMapOnMarkerTap: true,
                   ),
                 ],
               ),
