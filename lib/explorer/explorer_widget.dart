@@ -1,5 +1,6 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
+import '../components/simple_bottom_sheet_widget.dart';
 import '../flutter_flow/flutter_flow_google_map.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -171,6 +172,29 @@ class _ExplorerWidgetState extends State<ExplorerWidget> {
                         setState(() => googleMapsCenter = latLng),
                     initialLocation: googleMapsCenter ??=
                         LatLng(13.106061, -59.613158),
+                    markers: explorerMarkerRecordList
+                        .map(
+                          (explorerMarkerRecord) => FlutterFlowMarker(
+                            explorerMarkerRecord.reference.path,
+                            explorerMarkerRecord.location!,
+                            () async {
+                              await showModalBottomSheet(
+                                isScrollControlled: true,
+                                backgroundColor: Colors.transparent,
+                                context: context,
+                                builder: (context) {
+                                  return Padding(
+                                    padding: MediaQuery.of(context).viewInsets,
+                                    child: SimpleBottomSheetWidget(
+                                      place: explorerMarkerRecord,
+                                    ),
+                                  );
+                                },
+                              ).then((value) => setState(() {}));
+                            },
+                          ),
+                        )
+                        .toList(),
                     markerColor: GoogleMarkerColor.violet,
                     mapType: MapType.normal,
                     style: GoogleMapStyle.standard,
@@ -180,7 +204,7 @@ class _ExplorerWidgetState extends State<ExplorerWidget> {
                     showZoomControls: true,
                     showLocation: true,
                     showCompass: true,
-                    showMapToolbar: true,
+                    showMapToolbar: false,
                     showTraffic: false,
                     centerMapOnMarkerTap: true,
                   ),
