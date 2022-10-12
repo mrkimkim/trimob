@@ -100,93 +100,84 @@ class _ExplorerWidgetState extends State<ExplorerWidget> {
                     showTraffic: false,
                     centerMapOnMarkerTap: true,
                   ),
-                  Container(
-                    width: double.infinity,
-                    height: double.infinity,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(0),
-                    ),
-                    child: Align(
-                      alignment: AlignmentDirectional(-1, -1),
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
-                        child: InkWell(
-                          onTap: () async {
-                            context.pushNamed(
-                              'SearchPlace',
-                              extra: <String, dynamic>{
-                                kTransitionInfoKey: TransitionInfo(
-                                  hasTransition: true,
-                                  transitionType:
-                                      PageTransitionType.bottomToTop,
-                                  duration: Duration(milliseconds: 300),
-                                ),
-                              },
-                            );
-                          },
-                          child: Material(
-                            color: Colors.transparent,
-                            elevation: 10,
-                            shape: RoundedRectangleBorder(
+                  Align(
+                    alignment: AlignmentDirectional(-1, -1),
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
+                      child: InkWell(
+                        onTap: () async {
+                          context.pushNamed(
+                            'SearchPlace',
+                            extra: <String, dynamic>{
+                              kTransitionInfoKey: TransitionInfo(
+                                hasTransition: true,
+                                transitionType: PageTransitionType.bottomToTop,
+                                duration: Duration(milliseconds: 300),
+                              ),
+                            },
+                          );
+                        },
+                        child: Material(
+                          color: Colors.transparent,
+                          elevation: 10,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Container(
+                            width: double.infinity,
+                            height: 60,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
                               borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: Container(
-                              width: double.infinity,
-                              height: 60,
-                              decoration: BoxDecoration(
+                              border: Border.all(
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
-                                borderRadius: BorderRadius.circular(20),
-                                border: Border.all(
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                  width: 2,
+                                width: 2,
+                              ),
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      8, 0, 0, 0),
+                                  child: FlutterFlowIconButton(
+                                    borderColor: Colors.transparent,
+                                    borderRadius: 0,
+                                    borderWidth: 1,
+                                    buttonSize: 40,
+                                    icon: Icon(
+                                      Icons.search,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      size: 18,
+                                    ),
+                                    onPressed: () {
+                                      print('IconButton pressed ...');
+                                    },
+                                  ),
                                 ),
-                              ),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Padding(
+                                Align(
+                                  alignment: AlignmentDirectional(-1, 0),
+                                  child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        8, 0, 0, 0),
-                                    child: FlutterFlowIconButton(
-                                      borderColor: Colors.transparent,
-                                      borderRadius: 0,
-                                      borderWidth: 1,
-                                      buttonSize: 40,
-                                      icon: Icon(
-                                        Icons.search,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                        size: 18,
-                                      ),
-                                      onPressed: () {
-                                        print('IconButton pressed ...');
-                                      },
+                                        8, 0, 16, 0),
+                                    child: Text(
+                                      'Search Place  you want',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1
+                                          .override(
+                                            fontFamily: 'Poppins',
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.normal,
+                                          ),
                                     ),
                                   ),
-                                  Align(
-                                    alignment: AlignmentDirectional(-1, 0),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          8, 0, 16, 0),
-                                      child: Text(
-                                        'Search Place  you want',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText1
-                                            .override(
-                                              fontFamily: 'Poppins',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryText,
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.normal,
-                                            ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ),
                         ),
