@@ -82,56 +82,6 @@ class _ExplorerWidgetState extends State<ExplorerWidget> {
               onTap: () => FocusScope.of(context).unfocus(),
               child: Stack(
                 children: [
-                  Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Expanded(
-                        child: FlutterFlowGoogleMap(
-                          controller: googleMapsController,
-                          onCameraIdle: (latLng) =>
-                              setState(() => googleMapsCenter = latLng),
-                          initialLocation: googleMapsCenter ??=
-                              LatLng(13.106061, -59.613158),
-                          markers: explorerMarkerRecordList
-                              .map(
-                                (explorerMarkerRecord) => FlutterFlowMarker(
-                                  explorerMarkerRecord.reference.path,
-                                  explorerMarkerRecord.location!,
-                                  () async {
-                                    await showModalBottomSheet(
-                                      isScrollControlled: true,
-                                      backgroundColor: Colors.transparent,
-                                      context: context,
-                                      builder: (context) {
-                                        return Padding(
-                                          padding:
-                                              MediaQuery.of(context).viewInsets,
-                                          child: SimpleBottomSheetWidget(
-                                            place: explorerMarkerRecord,
-                                          ),
-                                        );
-                                      },
-                                    ).then((value) => setState(() {}));
-                                  },
-                                ),
-                              )
-                              .toList(),
-                          markerColor: GoogleMarkerColor.violet,
-                          mapType: MapType.normal,
-                          style: GoogleMapStyle.standard,
-                          initialZoom: 14,
-                          allowInteraction: true,
-                          allowZoom: true,
-                          showZoomControls: false,
-                          showLocation: true,
-                          showCompass: false,
-                          showMapToolbar: false,
-                          showTraffic: false,
-                          centerMapOnMarkerTap: true,
-                        ),
-                      ),
-                    ],
-                  ),
                   Align(
                     alignment: AlignmentDirectional(-1, -1),
                     child: Padding(
@@ -215,6 +165,56 @@ class _ExplorerWidgetState extends State<ExplorerWidget> {
                         ),
                       ),
                     ),
+                  ),
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        child: FlutterFlowGoogleMap(
+                          controller: googleMapsController,
+                          onCameraIdle: (latLng) =>
+                              setState(() => googleMapsCenter = latLng),
+                          initialLocation: googleMapsCenter ??=
+                              LatLng(13.106061, -59.613158),
+                          markers: explorerMarkerRecordList
+                              .map(
+                                (explorerMarkerRecord) => FlutterFlowMarker(
+                                  explorerMarkerRecord.reference.path,
+                                  explorerMarkerRecord.location!,
+                                  () async {
+                                    await showModalBottomSheet(
+                                      isScrollControlled: true,
+                                      backgroundColor: Colors.transparent,
+                                      context: context,
+                                      builder: (context) {
+                                        return Padding(
+                                          padding:
+                                              MediaQuery.of(context).viewInsets,
+                                          child: SimpleBottomSheetWidget(
+                                            place: explorerMarkerRecord,
+                                          ),
+                                        );
+                                      },
+                                    ).then((value) => setState(() {}));
+                                  },
+                                ),
+                              )
+                              .toList(),
+                          markerColor: GoogleMarkerColor.violet,
+                          mapType: MapType.normal,
+                          style: GoogleMapStyle.standard,
+                          initialZoom: 16,
+                          allowInteraction: true,
+                          allowZoom: true,
+                          showZoomControls: false,
+                          showLocation: true,
+                          showCompass: true,
+                          showMapToolbar: false,
+                          showTraffic: false,
+                          centerMapOnMarkerTap: true,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
